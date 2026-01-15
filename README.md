@@ -325,8 +325,8 @@ Live Lox is a production-ready, full-stack application designed to deliver exper
                                                                   
                                                                    21. Questions? Ideas? Bugs?
                                                                   
-                                                                   22. - **Twitter/X**: [@everworldlife](https://twitter.com/everworldlife)
-                                                                       - - **Email**: [your-email@example.com]
+                                                                   22. - **Twitter/X**: [[Your Twitter Handle]](https://twitter.com/everworldlife)
+                                                                       - - **Email**: [[your-email@example.com]]
                                                                          - - **GitHub Issues**: [everworldlife-netizen/Live-Lox-Model/issues](https://github.com/everworldlife-netizen/Live-Lox-Model/issues)
                                                                           
                                                                            - ---
