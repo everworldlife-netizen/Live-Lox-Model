@@ -1,0 +1,21 @@
+# News Ingestion Service Dependencies
+# Add these to your main requirements.txt
+
+# RSS Feed Parsing
+feedparser==6.0.11
+
+# NBA Official Injury Reports
+nbainjuries==1.0.0
+
+# Fuzzy String Matching (for player name resolution)
+thefuzz==0.22.1
+python-Levenshtein==0.25.1
+
+# Job Scheduling (if not already included)
+APScheduler==3.10.4
+
+# Redis (if not already included)
+redis==5.0.1
+
+# HTTP Requests (if not already included)
+requests==2.31.0
