@@ -1,0 +1,31 @@
+[Unit]
+Description=Live Lox News Ingestion Worker
+After=network.target postgresql.service redis-server.service livelox-api.service
+Wants=postgresql.service redis-server.service
+
+[Service]
+Type=simple
+User=livelox
+Group=livelox
+WorkingDirectory=/opt/livelox/Live-Lox-Model/apps/api
+Environment="PATH=/opt/livelox/Live-Lox-Model/venv/bin"
+Environment="PYTHONPATH=/opt/livelox/Live-Lox-Model/apps/api"
+EnvironmentFile=/opt/livelox/.env
+ExecStart=/opt/livelox/Live-Lox-Model/venv/bin/python3.11 \
+    -m app.workers.run_news_ingestion
+
+# Restart policy
+Restart=always
+RestartSec=30
+StartLimitInterval=0
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Logging
+StandardOutput=append:/var/log/livelox/news-worker.log
+StandardError=append:/var/log/livelox/news-worker-error.log
+
+[Install]
+WantedBy=multi-user.target

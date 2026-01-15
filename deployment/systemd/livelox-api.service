@@ -1,0 +1,36 @@
+[Unit]
+Description=Live Lox FastAPI Application
+After=network.target postgresql.service redis-server.service
+Wants=postgresql.service redis-server.service
+
+[Service]
+Type=notify
+User=livelox
+Group=livelox
+WorkingDirectory=/opt/livelox/Live-Lox-Model/apps/api
+Environment="PATH=/opt/livelox/Live-Lox-Model/venv/bin"
+EnvironmentFile=/opt/livelox/.env
+ExecStart=/opt/livelox/Live-Lox-Model/venv/bin/gunicorn \
+    --workers 2 \
+    --worker-class uvicorn.workers.UvicornWorker \
+    --bind 0.0.0.0:8000 \
+    --timeout 120 \
+    --access-logfile /var/log/livelox/access.log \
+    --error-logfile /var/log/livelox/error.log \
+    --log-level info \
+    app.main:app
+
+# Restart policy
+Restart=always
+RestartSec=10
+StartLimitInterval=0
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Resource limits
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
